@@ -235,6 +235,9 @@ p { margin: 0; }
 @media (min-width: 768px) {
   .hero-title { font-size: 3rem; }
 }
+/* Brenner Pass uses a larger display title */
+.hero-title-xl { font-size: 2.25rem; }
+@media (min-width: 768px) { .hero-title-xl { font-size: 3.75rem; } }
 .hero-subtitle {
   margin-top: 0.75rem;
   font-family: var(--font-display);
@@ -1071,11 +1074,31 @@ ol.steps li:last-child { margin-bottom: 0; }
 .icon-card-icon.primary { color: var(--primary); }
 .icon-card-icon.primary svg { stroke: var(--primary); }
 
-/* Quick link that highlights in green on hover */
+/* Quick link that highlights in green on hover (TGS) */
 .quick-link.primary-hover:hover {
   background: var(--primary);
   color: var(--primary-fg);
 }
+
+/* Neutral accent hover (Brenner Pass) */
+.quick-link.accent-hover:hover { background: var(--muted); }
+
+/* ── Responsive quick-link grids ────────────────────────────── */
+/* TGS: 2 → 4 cols */
+.tgs-ql-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+@media (min-width: 768px) { .tgs-ql-grid { grid-template-columns: repeat(4, 1fr); } }
+
+/* Brenner Pass: 2 → 3 cols */
+.bp-ql-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+@media (min-width: 768px) { .bp-ql-grid { grid-template-columns: repeat(3, 1fr); } }
 
 /* ── 3-column grid (Brenner Pass codes) ─────────────────────── */
 .grid-3 { display: grid; gap: 1rem; }
@@ -1194,9 +1217,11 @@ ul.bullet-list li:last-child { margin-bottom: 0; }
   position: relative;
   max-width: 48rem;
   margin: -4rem auto 0;
-  padding: 0 1.25rem;
+  padding: 2.5rem 1.25rem 0;
 }
-@media (min-width: 768px) { .tgs-header { margin-top: -6rem; } }
+@media (min-width: 768px) {
+  .tgs-header { margin-top: -6rem; padding-top: 4rem; }
+}
 .tgs-page-icon {
   display: flex;
   align-items: center;
@@ -1247,7 +1272,8 @@ ul.bullet-list li:last-child { margin-bottom: 0; }
 .tgs-nav-link:hover { background: var(--primary); color: var(--primary-fg); }
 
 /* ── Your Neighborhood (TGS) ────────────────────────────────── */
-.tgs-neighborhood-section { max-width: 48rem; margin: 0 auto; padding: 2rem 1.25rem 0; }
+.tgs-neighborhood-section { max-width: 48rem; margin: 0 auto; padding: 2rem 1.25rem 2.5rem; }
+@media (min-width: 768px) { .tgs-neighborhood-section { padding-bottom: 4rem; } }
 .tgs-qp-header {
   display: flex;
   align-items: center;
@@ -1338,6 +1364,7 @@ ul.bullet-list li:last-child { margin-bottom: 0; }
 
 /* ── Accordion (TGS categories) ─────────────────────────────── */
 .accordion-list { max-width: 48rem; margin: 0 auto; padding: 1rem 1.25rem 2.5rem; }
+@media (min-width: 768px) { .accordion-list { padding-bottom: 4rem; } }
 .accordion-list > * + * { margin-top: 0.75rem; }
 .accordion-item {
   background: var(--card-bg);
@@ -1357,7 +1384,7 @@ ul.bullet-list li:last-child { margin-bottom: 0; }
   font-family: var(--font-body);
 }
 @media (min-width: 768px) { .accordion-trigger { padding: 0.75rem 1.5rem; } }
-.accordion-trigger:hover { background: hsl(35 20% 92% / 0.5); }
+.accordion-trigger:hover { background: hsl(35 20% 92% / 0.3); }
 .accordion-trigger-left { display: flex; align-items: center; gap: 0.75rem; }
 .accordion-cat-icon {
   display: flex;
