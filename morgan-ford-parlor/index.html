@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Stanley — Guest Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════ -->
+<header>
+  <div class="hero-img-wrap">
+    <img
+      src="assets/stanley-exterior.jpg"
+      alt="The Stanley — a classic brick row home in Tower Grove South"
+      class="hero-img"
+    />
+    <div class="hero-gradient"></div>
+  </div>
+  <div class="hero-text">
+    <div class="hero-divider">
+      <span class="hero-divider-line"></span>
+      <span class="hero-divider-label">Est. 1910</span>
+      <span class="hero-divider-line"></span>
+    </div>
+    <h1 class="hero-title">The Stanley</h1>
+    <p class="hero-subtitle">Tower Grove historic sophistication</p>
+    <p class="hero-desc">Welcome to your home in one of St.&nbsp;Louis's most beloved neighborhoods — a beautifully preserved brick home with over a century of character.</p>
+  </div>
+</header>
+
+<!-- ══════════════════════════════════════════════════════════
+     QUICK LINKS
+══════════════════════════════════════════════════════════ -->
+<nav class="section-container pt-0">
+  <div class="info-card border-brick-muted">
+    <h2 class="card-h2">Quick Links</h2>
+    <div class="quick-links-grid">
+      <a href="#checkin"      class="quick-link">Check-In</a>
+      <a href="#coffee"       class="quick-link">Coffee Maker</a>
+      <a href="#amenities"    class="quick-link">Amenities</a>
+      <a href="#neighborhood" class="quick-link">Neighborhood</a>
+      <a href="#checkout"     class="quick-link">Checkout</a>
+      <a href="#rules"        class="quick-link">House Rules</a>
+      <a href="#contact"      class="quick-link">Contact Us</a>
+      <a href="#review"       class="quick-link">Your Review</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHECK-IN
+══════════════════════════════════════════════════════════ -->
+<section id="checkin" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><path d="m21 2-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0 3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+    </div>
+    <h2 class="section-title">Check-In</h2>
+  </div>
+
+  <!-- Password Gate (shown when not unlocked) -->
+  <div id="checkin-locked" class="password-gate">
+    <div class="pg-icon-wrap">
+      <div class="pg-icon-circle">
+        <svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
+    </div>
+    <h3 class="pg-title">Guest Access Required</h3>
+    <p class="pg-desc">Enter the guest password from your booking confirmation to view check-in codes and property details.</p>
+    <form class="pg-form" id="pg-form" onsubmit="handlePasswordSubmit(event)">
+      <input
+        id="pg-input"
+        type="password"
+        maxlength="50"
+        placeholder="Enter guest password"
+        class="pg-input"
+        oninput="document.getElementById('pg-error').classList.add('hidden')"
+      />
+      <p id="pg-error" class="pg-error hidden">Incorrect password. Please try again.</p>
+      <button type="submit" class="pg-btn">Unlock</button>
+    </form>
+  </div>
+
+  <!-- Check-in content (hidden until unlocked) -->
+  <div id="checkin-content" class="hidden">
+
+    <!-- Times -->
+    <div class="grid-2">
+      <div class="code-card">
+        <p class="code-card-label">Check-In Time</p>
+        <p class="code-box">3:00 PM</p>
+      </div>
+      <div class="code-card">
+        <p class="code-card-label">Check-Out Time</p>
+        <p class="code-box">11:00 AM</p>
+      </div>
+    </div>
+
+    <!-- Codes -->
+    <div class="grid-2 mt-4">
+      <div class="code-card">
+        <p class="code-card-label">Door Code</p>
+        <p class="code-box">Sent via Airbnb</p>
+      </div>
+      <div class="code-card">
+        <p class="code-card-label">Back Gate Code</p>
+        <p class="code-box">9577</p>
+      </div>
+    </div>
+
+    <!-- WiFi -->
+    <div class="wifi-card mt-4">
+      <div class="wifi-header">
+        <svg viewBox="0 0 24 24"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" x2="12.01" y1="20" y2="20"/></svg>
+        <span class="wifi-label">WiFi: 3257 1st Floor</span>
+      </div>
+      <p class="code-box" id="wifi-password">GreatStay!</p>
+      <button class="wifi-copy-btn" id="wifi-copy-btn" onclick="copyWifiPassword()">
+        <svg id="wifi-copy-icon" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+        <svg id="wifi-check-icon" viewBox="0 0 24 24" class="hidden"><path d="M20 6 9 17l-5-5"/></svg>
+        <span id="wifi-copy-label">Copy password</span>
+      </button>
+    </div>
+
+    <!-- Arrival Instructions -->
+    <div class="info-card mt-4">
+      <h3 class="card-h3">Arrival Instructions</h3>
+      <p style="font-size:0.875rem;color:var(--muted-fg);margin-bottom:0.75rem;">
+        The front and back doors use a <strong>Schlage Encode Smart Deadbolt</strong> — no physical key needed.
+      </p>
+      <ol class="steps">
+        <li>Navigate to the address provided in your booking confirmation.</li>
+        <li>At the front door, enter your <strong>guest code</strong> on the Schlage touchscreen keypad — the deadbolt will unlock automatically.</li>
+        <li>Let yourself in and make yourself at home!</li>
+        <li>To lock the door, press the <strong>Schlage button</strong> on the keypad.</li>
+      </ol>
+    </div>
+
+    <!-- Back Gate Collapsible -->
+    <div class="info-card mt-4">
+      <button class="collapsible-trigger" onclick="toggleBackGate()" aria-expanded="false" id="back-gate-trigger">
+        <div class="collapsible-trigger-left">
+          <svg viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <h3 class="card-h3" style="margin:0;">Back Gate &amp; Parking Access</h3>
+        </div>
+        <svg class="collapsible-chevron" id="back-gate-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+      <div id="back-gate-body" class="hidden">
+        <div class="collapsible-body">
+          <h4 class="card-h4">Finding the Parking Spot</h4>
+          <p style="font-size:0.875rem;color:var(--fg);margin-bottom:0.75rem;">
+            Your private parking space is tucked behind the home, accessed from the alley. From Morgan Ford Rd, turn onto <strong>Fyler Ave</strong> and look for the alley entrance just past <strong>Stella Blues Grill</strong>. Head up the alley and you'll find the parking pad directly behind the house — your designated space is highlighted on the map below.
+          </p>
+          <figure class="parking-map-figure">
+            <div style="position:relative;">
+              <img
+                src="assets/morganford-parking-map.png"
+                alt="Map showing the parking area behind the home, accessible from the alley off Fyler Ave"
+                loading="lazy"
+              />
+              <div class="parking-label" aria-hidden="true">Your Parking ↑</div>
+            </div>
+            <figcaption class="parking-map-caption">Your parking pad (highlighted) sits directly behind the home, off the alley.</figcaption>
+          </figure>
+
+          <h4 class="card-h4 mt-4">Using the Back Gate</h4>
+          <p style="font-size:0.875rem;color:var(--fg);margin-bottom:0.75rem;">
+            The back gate is secured with a <strong>Yardlock</strong> — a keyless latch. Your <strong>Back Gate Code</strong> is shown in the Check-In section above.
+          </p>
+          <ol class="steps">
+            <li>Enter <strong>9577</strong> on the Yardlock keypad on the outside of the gate.</li>
+            <li>Once unlocked, <strong>pull the lock itself toward you and down</strong> to release the latch — the gate will swing open.</li>
+            <li>After entering, push the gate firmly shut behind you until it <strong>clicks</strong> locked.</li>
+          </ol>
+          <p style="font-size:0.75rem;color:var(--muted-fg);margin-top:0.75rem;">
+            The Yardlock re-locks automatically when the gate closes — just make sure you hear the click.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /checkin-content -->
+
+  <!-- Photos always visible -->
+  <div class="photo-grid-2">
+    <img src="assets/stanley-living-room.jpg" alt="The Stanley living room with leather chairs and emerald drapes" />
+    <img src="assets/stanley-front-parlor.jpg" alt="The Stanley front parlor with marble fireplace" />
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     COFFEE MAKER
+══════════════════════════════════════════════════════════ -->
+<section id="coffee" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+    </div>
+    <h2 class="section-title">Ninja Pods &amp; Grounds Coffee Maker</h2>
+  </div>
+  <div class="info-card">
+    <div class="coffee-flex mb-4">
+      <div class="coffee-text">
+        <p style="color:var(--fg);">This home has a <strong>Ninja Pods &amp; Grounds Specialty Single-Serve Coffee Maker (PB051)</strong>. It brews K-Cup® compatible pods or ground coffee with 4 brew styles: Classic, Rich, Over Ice, and Specialty.</p>
+      </div>
+      <div class="coffee-images">
+        <img src="assets/ninja-dualbrew.jpg" alt="Ninja PB051 Pods &amp; Grounds coffee maker" />
+        <img src="assets/stanley-coffee-station.jpg" alt="The Stanley coffee station with kettle, pour-over, grinder, and toaster" />
+      </div>
+    </div>
+
+    <h3 class="card-h3">Brewing with a Pod (K-Cup®)</h3>
+    <ol class="steps mb-4">
+      <li>Check the water reservoir — fill to at least the desired cup size line.</li>
+      <li>Open the lid and place the <strong>Ninja Pod Adapter</strong> in the brew basket.</li>
+      <li>Insert one K-Cup® pod into the adapter.</li>
+      <li>Close the lid firmly.</li>
+      <li>Place your mug under the brew nozzle.</li>
+      <li>Press the <strong>Brew Style</strong> button to choose: Classic, Rich, Over Ice, or Specialty.</li>
+      <li>Press the <strong>Size</strong> button to select your cup size (8, 10, 12, or 24 oz).</li>
+      <li>Press <strong>Start</strong> — brewing begins in seconds.</li>
+    </ol>
+
+    <h3 class="card-h3">Brewing with Ground Coffee</h3>
+    <ol class="steps mb-4">
+      <li>Check the water reservoir and fill as needed.</li>
+      <li>Open the lid and place the <strong>Permanent Filter</strong> in the brew basket.</li>
+      <li>Add ground coffee using the Ninja Smart Scoop (about 2–3 scoops for 8 oz, 5–7 for 24 oz).</li>
+      <li>Close the filter and the lid.</li>
+      <li>Place your mug under the brew nozzle.</li>
+      <li>Select your brew style and cup size.</li>
+      <li>Press <strong>Start</strong> to brew.</li>
+    </ol>
+
+    <div class="tips-box">
+      <strong>Tips:</strong> Use <strong>Over Ice</strong> for iced coffee — it brews a concentrated shot to stay bold over ice. The <strong>Specialty</strong> setting brews a super-rich 4 oz concentrate, perfect for lattes and cappuccinos with frothed milk. Use only one insert at a time (Pod Adapter <em>or</em> Permanent Filter — never both).
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     AMENITIES
+══════════════════════════════════════════════════════════ -->
+<section id="amenities" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </div>
+    <h2 class="section-title">Amenities</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="icon-card">
+      <div class="icon-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0 0 14 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 0 1-11.91 4.97"/></svg>
+      </div>
+      <div>
+        <h4 class="icon-card-title">Linens &amp; Towels</h4>
+        <p class="icon-card-desc">Fresh linens and towels are provided.</p>
+      </div>
+    </div>
+    <div class="icon-card">
+      <div class="icon-card-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>
+      </div>
+      <div>
+        <h4 class="icon-card-title">Kitchen</h4>
+        <p class="icon-card-desc">Full kitchen with cookware, dishes, utensils, and the Ninja DualBrew coffee maker.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dishwasher -->
+  <div class="info-card border-brick-muted mt-4">
+    <h3 class="card-h3">🫧 Honeywell 18″ Dishwasher</h3>
+    <p style="font-size:0.875rem;color:var(--muted-fg);margin-bottom:0.75rem;">
+      Located under the butcher-block island. It's compact but gets the job done!
+    </p>
+    <ol class="steps">
+      <li>Pull the door down and slide out the rack.</li>
+      <li>Load dishes — cups and bowls face down on top, plates below.</li>
+      <li>Add a <strong>dishwasher pod</strong> to the detergent compartment on the inside of the door (pods are under the sink).</li>
+      <li>Close the door firmly until it clicks.</li>
+      <li>Press <strong>Program</strong> to choose a cycle — <strong>Normal</strong> works great for most loads.</li>
+      <li>Press <strong>Start</strong> — you'll hear a beep — then <strong>close the door within 4 seconds</strong>. A second beep confirms the cycle has begun.</li>
+    </ol>
+    <p style="font-size:0.75rem;color:var(--muted-fg);margin-top:0.75rem;font-style:italic;">
+      💡 Use the <strong>Rapid</strong> cycle for lightly soiled dishes — it's much faster. Turn on <strong>Energy Saver</strong> to skip the heated dry.
+    </p>
+  </div>
+
+  <div class="photo-grid-2">
+    <img src="assets/stanley-kitchen.jpg"      alt="The Stanley eat-in kitchen with butcher-block counters and gas range" />
+    <img src="assets/stanley-bedroom.jpg"      alt="The Stanley bedroom with king bed and ceiling fan" />
+    <img src="assets/stanley-sitting-room.jpg" alt="The Stanley sitting room with marble fireplace" />
+    <img src="assets/stanley-backyard.jpg"     alt="The Stanley private backyard with mature shade tree and string lights" />
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     RECORD PLAYER
+══════════════════════════════════════════════════════════ -->
+<section id="record-player" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg>
+    </div>
+    <h2 class="section-title">Record Player</h2>
+  </div>
+
+  <div class="photo-full mb-5">
+    <img src="assets/stanley-library.jpg" alt="The Stanley library nook with leather chair, bookshelves, and Victrola turntable" />
+  </div>
+
+  <div class="info-card border-brick-muted">
+    <p style="font-size:0.875rem;color:var(--muted-fg);margin-bottom:1rem;">
+      Your unit has a <strong>Victrola Century</strong> turntable with built-in speakers, supporting <strong>vinyl</strong>, <strong>Bluetooth</strong>, <strong>CD</strong>, and <strong>cassette</strong>. There are <strong>CD and cassette ports on either side of the unit</strong>.
+    </p>
+
+    <div class="record-section">
+      <h3 class="record-section-title">🎵 Play a Record</h3>
+      <ol class="steps">
+        <li>Lift the dust cover and turn the unit ON using the power button on the front.</li>
+        <li>Press the <strong>FUNCTION</strong> button until the display reads <strong>PHONO</strong>.</li>
+        <li>Set the speed switch to match your record — <strong>33</strong>, <strong>45</strong>, or <strong>78</strong> RPM.</li>
+        <li>Release the tonearm clip, gently lift the tonearm, and place the needle on the outer edge of the record.</li>
+        <li>Adjust volume with the front knob — start low and ease up.</li>
+        <li>When finished, lift the tonearm back to its rest and secure the clip.</li>
+      </ol>
+      <p class="record-tip">💡 For 7-inch 45 RPM singles, use the included 45 adapter on the spindle.</p>
+    </div>
+
+    <div class="record-section">
+      <h3 class="record-section-title">📱 Bluetooth (Stream from Your Phone)</h3>
+      <ol class="steps">
+        <li>Press the <strong>FUNCTION</strong> button until the display shows <strong>BT</strong>. You'll hear it enter pairing mode.</li>
+        <li>On your phone, open <strong>Settings → Bluetooth</strong> and select <strong>"Victrola Century"</strong>.</li>
+        <li>A chime will confirm pairing. Play any audio from your phone and it will route through the unit's speakers.</li>
+        <li>Use your phone to control playback and volume.</li>
+      </ol>
+      <p class="record-tip">💡 If it won't reconnect, forget the device in your phone's Bluetooth settings and re-pair.</p>
+    </div>
+
+    <div class="record-section">
+      <h3 class="record-section-title">💿 CD &amp; 📼 Cassette</h3>
+      <ol class="steps">
+        <li>The <strong>CD slot</strong> is on one side of the unit and the <strong>cassette deck</strong> is on the other.</li>
+        <li>Press the <strong>FUNCTION</strong> button until the display reads <strong>CD</strong> or <strong>TAPE</strong> to match what you're playing.</li>
+        <li>Insert your CD or cassette into the corresponding port and use the front controls to play, pause, and skip.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     NEIGHBORHOOD
+══════════════════════════════════════════════════════════ -->
+<section id="neighborhood" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    </div>
+    <h2 class="section-title">Your Neighborhood</h2>
+  </div>
+
+  <p style="color:var(--fg);margin-bottom:1rem;">
+    You're in Tower Grove South — one of St.&nbsp;Louis's most walkable and loved neighborhoods. Everything below is within a short walk of your front door.
+  </p>
+
+  <div class="neighborhood-grid">
+    <div class="nbhd-card highlight full-row">
+      <div class="nbhd-card-header">
+        <h4 class="nbhd-title">🐦 Songbird</h4>
+        <span class="nbhd-badge">⭐ Yelp Top 100</span>
+      </div>
+      <p class="nbhd-desc">Community-focused breakfast and lunch with locally-sourced ingredients, freshly prepared to order. Recently named #5 on Yelp's Top 100 Places to Eat in the Midwest.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🍻 Stella Blues</h4>
+      <p class="nbhd-desc">Literally next door at 3269 Morganford. Full bar, outdoor seating, great burgers and live music on weekends.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🥪 Garden Variety Deli</h4>
+      <p class="nbhd-desc">One block south at 3131 Morganford. Creative sandwiches, fresh salads, and excellent coffee. Perfect for lunch.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🍺 Civil Life Brewing</h4>
+      <p class="nbhd-desc">Cor blimey guv'na! — grab a handle of award winning beer in this comfortable brew pub.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🍕 Pizzeoli</h4>
+      <p class="nbhd-desc">Wood-fired Neapolitan pizza at Hartford &amp; Morganford. Fresh, locally sourced — a neighborhood favorite.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🌳 Tower Grove Park</h4>
+      <p class="nbhd-desc">Two blocks north — 289 acres of trails, pavilions, playgrounds, and a Saturday farmers market (spring–fall).</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🍔 Tin Can Tavern &amp; Grille</h4>
+      <p class="nbhd-desc">Casual neighborhood bar and grill right on Morganford. Solid pub food, cold beer, and a friendly crowd.</p>
+    </div>
+  </div>
+
+  <h3 class="nbhd-subheading">Worth the Short Drive (5–10 min)</h3>
+  <div class="neighborhood-grid">
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">☕ Sump Coffee</h4>
+      <p class="nbhd-desc">Specialty third-wave coffee on S. Jefferson — a St. Louis institution for serious coffee lovers.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🌮 Guerrilla Street Food</h4>
+      <p class="nbhd-desc">Filipino-inspired street food on Arsenal. Don't miss the adobo and lumpia.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🍦 Gelato Di Riso</h4>
+      <p class="nbhd-desc">Housemade gelato on South Grand Blvd — worth the 5-minute drive or 15-minute stroll.</p>
+    </div>
+    <div class="nbhd-card">
+      <h4 class="nbhd-title mb-2">🛒 Jay International</h4>
+      <p class="nbhd-desc">Incredible international grocery on South Grand with spices, sauces, and specialty items from everywhere.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:1.25rem;text-align:center;">
+    <a href="tower-grove-south.html" class="explore-btn">
+      <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Explore Full Neighborhood Guide ↗
+    </a>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CHECKOUT
+══════════════════════════════════════════════════════════ -->
+<section id="checkout" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg>
+    </div>
+    <h2 class="section-title">Checkout Checklist</h2>
+  </div>
+
+  <div class="space-y-4">
+    <div class="info-card">
+      <h3 class="checklist-title">Must Do</h3>
+      <ul class="checklist-items">
+        <li class="checklist-item"><span class="checklist-box"></span>Check-out by 11:00 AM</li>
+        <li class="checklist-item"><span class="checklist-box"></span>Take out all trash to the bins in the alleyway behind the home</li>
+        <li class="checklist-item"><span class="checklist-box"></span>Turn off all lights and fans</li>
+        <li class="checklist-item"><span class="checklist-box"></span>Make sure all windows are closed and locked</li>
+        <li class="checklist-item"><span class="checklist-box"></span>Make sure all doors are locked (press the Schlage button on each deadbolt)</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3 class="checklist-title">Nice to Do</h3>
+      <ul class="checklist-items">
+        <li class="checklist-item"><span class="checklist-box"></span>Leave used towels in a pile in the bathroom</li>
+        <li class="checklist-item"><span class="checklist-box"></span>Leave used sheets and pillowcases in a pile on the bed (no need to strip)</li>
+        <li class="checklist-item"><span class="checklist-box"></span>Run the dishwasher or hand-wash any dishes used</li>
+        <li class="checklist-item"><span class="checklist-box"></span>Set thermostat to 72°F (summer) or 65°F (winter)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     HOUSE RULES
+══════════════════════════════════════════════════════════ -->
+<section id="rules" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+    </div>
+    <h2 class="section-title">House Rules</h2>
+  </div>
+
+  <p style="color:var(--fg);margin-bottom:1rem;">
+    We're truly glad you chose to stay with us. These guidelines help everyone — guests, neighbors, and future visitors — have a great experience.
+  </p>
+
+  <div id="rules-list">
+    <!-- Rule 1 -->
+    <div class="rule-card">
+      <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div><h4 class="rule-title">Guests &amp; Visitors</h4><p class="rule-desc">The reservation covers the number of guests listed at booking. If you're expecting daytime visitors, just give us a heads up. This is a duplex and other units may be occupied, so being mindful of your neighbors is always appreciated.</p></div>
+    </div>
+    <!-- Rule 2 -->
+    <div class="rule-card">
+      <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+      <div><h4 class="rule-title">Shared Spaces &amp; Off-Limits Areas</h4><p class="rule-desc">The back yard and back entryway are shared with other residents — please keep these areas tidy. The basement is strictly off-limits to guests.</p></div>
+    </div>
+    <!-- Rule 3 -->
+    <div class="rule-card">
+      <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+      <div><h4 class="rule-title">Children &amp; Outdoor Safety</h4><p class="rule-desc">Children must never be left unattended in the front or back yard. The paved area at the front of the home is not for walking on, and guests should not attempt to interact with, approach, or get close to the pond under any circumstances.</p></div>
+    </div>
+    <!-- Rule 4 -->
+    <div class="rule-card">
+      <div class="rule-icon"><svg viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></div>
+      <div><h4 class="rule-title">Quiet Hours &amp; No Parties</h4><p class="rule-desc">We're a quiet residential property. Quiet hours are 10:00 PM – 8:00 AM — this includes music, TV, and outdoor conversations. Parties and large gatherings are not permitted.</p></div>
+    </div>
+    <!-- Rules 5–15 (hidden initially) -->
+    <div id="rules-extra" class="hidden">
+      <!-- Rule 5 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="M18 12H2v4h16"/><path d="M22 12v4"/><path d="M7 12v4"/><path d="M18 8c0-2.5-2-2.5-2-5"/><path d="M22 8c0-2.5-2-2.5-2-5"/></svg></div>
+        <div><h4 class="rule-title">No Smoking or Vaping</h4><p class="rule-desc">Smoking and vaping (including marijuana) are not permitted anywhere inside the unit or on the property. The home is equipped with smoke and vape detection sensors.</p></div>
+      </div>
+      <!-- Rule 6 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"/><path d="m14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"/><path d="M8 14v.5"/><path d="M16 14v.5"/><path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/><path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444c0-1.061-.162-2.2-.493-3.309m-9.243-6.082A8.801 8.801 0 0 1 12 5c.78 0 1.5.108 2.161.306"/></svg></div>
+        <div><h4 class="rule-title">Pets</h4><p class="rule-desc">We love pets! However, we aren't able to accommodate them unless explicitly approved at booking. Please reach out before booking if you'd like to discuss.</p></div>
+      </div>
+      <!-- Rule 7 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg></div>
+        <div><h4 class="rule-title">Parking</h4><p class="rule-desc">One private parking space in the back — use only the space designated for this unit. Street parking also available. Note: street cleaning on Morganford occurs on Wednesdays — check No Parking signs for times.</p></div>
+      </div>
+      <!-- Rule 8 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></div>
+        <div><h4 class="rule-title">Don't Unplug Devices</h4><p class="rule-desc">The WiFi router, smart locks, thermostat, and sensors need to stay plugged in. If something seems off, just message us!</p></div>
+      </div>
+      <!-- Rule 9 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div>
+        <div><h4 class="rule-title">Thermostat &amp; Utilities</h4><p class="rule-desc">Set the thermostat no lower than 68°F in summer, no higher than 72°F in winter. Turn off lights and climate control when heading out.</p></div>
+      </div>
+      <!-- Rule 10 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg></div>
+        <div><h4 class="rule-title">Trash &amp; Recycling</h4><p class="rule-desc">Bag all trash and dispose of it in the dumpster in the alley behind the parking area. Keep the unit and shared areas tidy.</p></div>
+      </div>
+      <!-- Rule 11 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div><h4 class="rule-title">Privacy &amp; Security</h4><p class="rule-desc">No cameras or recording devices inside — your privacy is completely respected. Exterior cameras are in place for security. Smoke and vape detection sensors are installed.</p></div>
+      </div>
+      <!-- Rule 12 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21H17"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
+        <div><h4 class="rule-title">Local Compliance</h4><p class="rule-desc">This property operates in full compliance with City of St. Louis short-term rental regulations.</p></div>
+      </div>
+      <!-- Rule 13 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <div><h4 class="rule-title">Take Care of the Space</h4><p class="rule-desc">Please treat the home and its contents with care. If anything breaks, just let us know. Guests are responsible for damage beyond normal wear and tear.</p></div>
+      </div>
+      <!-- Rule 14 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg></div>
+        <div><h4 class="rule-title">A Note on Fees</h4><p class="rule-desc">Additional charges may apply for property damage, unauthorized smoking/vaping, unapproved pets, or unauthorized late check-out.</p></div>
+      </div>
+      <!-- Rule 15 -->
+      <div class="rule-card">
+        <div class="rule-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></div>
+        <div><h4 class="rule-title">Questions?</h4><p class="rule-desc">We're always just a message away. Reach out anytime via Airbnb and we'll get back to you as quickly as possible!</p></div>
+      </div>
+    </div><!-- /rules-extra -->
+  </div><!-- /rules-list -->
+
+  <button class="show-all-btn" id="show-all-btn" onclick="showAllRules()">
+    <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+    Show all 15 rules
+  </button>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     REVIEW
+══════════════════════════════════════════════════════════ -->
+<section id="review" class="section-container">
+  <div class="review-card">
+    <div class="stars">
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+    <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--fg);margin:0 0 0.75rem 0;">How Was Your Stay?</h2>
+    <p style="color:var(--fg);max-width:28rem;margin:0 auto 0.75rem;font-weight:500;">
+      5-star reviews are the lifeblood of a host — they're how small hosts like us keep the lights on and welcome the next guest.
+    </p>
+    <p style="color:var(--muted-fg);max-width:28rem;margin:0 auto 0.75rem;">
+      If your stay was 5-star worthy, we'd be incredibly grateful if you took a moment to leave one. And <strong>before you rate us anything less than 5 stars</strong>, please message us first — tell us anything that could have been improved and we'll do everything we can to make it right.
+    </p>
+    <p style="font-size:0.875rem;color:var(--muted-fg);max-width:24rem;margin:0 auto;">
+      Your honest feedback helps us improve, and your review means the world to us. 💛
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTACT / BOOK DIRECT
+══════════════════════════════════════════════════════════ -->
+<section id="contact" class="section-container">
+  <div class="section-header">
+    <div class="section-icon">
+      <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+    </div>
+    <h2 class="section-title">Book Direct &amp; Save</h2>
+  </div>
+  <div class="info-card">
+    <p style="color:var(--fg);margin-bottom:1rem;">
+      Enjoyed your stay? Book directly with us next time for a better rate — no service fees, flexible dates, and personalized recommendations for your trip.
+    </p>
+    <div class="info-note mb-5">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      <span><strong>Need help during your stay?</strong> For anything time-sensitive — lockouts, maintenance issues, or urgent questions — please message us through the <strong>Airbnb app</strong> so we can respond as quickly as possible.</span>
+    </div>
+
+    <!-- Contact Form -->
+    <div id="contact-form-wrap">
+      <form id="contact-form" onsubmit="handleContactSubmit(event)" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="contact-name">Your Name</label>
+            <input id="contact-name" type="text" maxlength="100" placeholder="Jane Doe" class="form-input" required />
+            <span id="err-name" class="form-error hidden"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contact-email">Email</label>
+            <input id="contact-email" type="email" maxlength="255" placeholder="jane@email.com" class="form-input" required />
+            <span id="err-email" class="form-error hidden"></span>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label class="form-label" for="contact-dates">Preferred Dates</label>
+          <input id="contact-dates" type="text" maxlength="100" placeholder="e.g. March 15–18, 2026" class="form-input" />
+          <span id="err-dates" class="form-error hidden"></span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="contact-message">Message</label>
+          <textarea id="contact-message" maxlength="1000" rows="3" placeholder="Tell us about your trip — group size, occasion, questions..." class="form-textarea" required></textarea>
+          <span id="err-message" class="form-error hidden"></span>
+        </div>
+        <button type="submit" class="form-submit">Send Inquiry</button>
+      </form>
+    </div>
+
+    <div id="contact-success" class="form-success hidden">
+      <p class="form-success-title">Thanks for reaching out!</p>
+      <p class="form-success-msg">Your email app should have opened with your inquiry. We'll get back to you soon!</p>
+      <button class="form-again-btn" onclick="resetContactForm()">Send another inquiry</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-divider">
+    <span class="footer-divider-line"></span>
+    <span class="footer-divider-label">Since 1910</span>
+    <span class="footer-divider-line"></span>
+  </div>
+  <p class="footer-disclaimer">
+    These guest instructions are provided to help ensure a safe and comfortable stay. By entering and using the property, you acknowledge that you are doing so voluntarily and at your own risk. The homeowner is not responsible for any injuries, accidents, loss, or damage to personal belongings that may occur on or around the premises. All guests agree to follow the safety guidance, house rules, and any posted instructions throughout the property.
+  </p>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  const STORAGE_KEY = 'guest-access-unlocked';
+  const PASSWORD    = 'welcome';
+
+  /* ── Back navigation block ──────────────────────────────── */
+  window.history.pushState(null, '', window.location.href);
+  window.addEventListener('popstate', function () {
+    window.history.pushState(null, '', window.location.href);
+  });
+
+  /* ── Password gate — initialise on load ─────────────────── */
+  if (sessionStorage.getItem(STORAGE_KEY) === 'true') {
+    unlockCheckin();
+  }
+
+  function unlockCheckin() {
+    document.getElementById('checkin-locked').classList.add('hidden');
+    document.getElementById('checkin-content').classList.remove('hidden');
+  }
+
+  window.handlePasswordSubmit = function (e) {
+    e.preventDefault();
+    var input = document.getElementById('pg-input').value.trim().toLowerCase();
+    if (input === PASSWORD) {
+      sessionStorage.setItem(STORAGE_KEY, 'true');
+      unlockCheckin();
+    } else {
+      document.getElementById('pg-error').classList.remove('hidden');
+    }
+  };
+
+  /* ── WiFi copy button ───────────────────────────────────── */
+  window.copyWifiPassword = function () {
+    var pw = document.getElementById('wifi-password').textContent;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(pw).then(showCopied, showCopied);
+    } else {
+      showCopied();
+    }
+  };
+
+  function showCopied() {
+    document.getElementById('wifi-copy-icon').classList.add('hidden');
+    document.getElementById('wifi-check-icon').classList.remove('hidden');
+    document.getElementById('wifi-copy-label').textContent = 'Copied!';
+    setTimeout(function () {
+      document.getElementById('wifi-copy-icon').classList.remove('hidden');
+      document.getElementById('wifi-check-icon').classList.add('hidden');
+      document.getElementById('wifi-copy-label').textContent = 'Copy password';
+    }, 2000);
+  }
+
+  /* ── Back gate collapsible ──────────────────────────────── */
+  window.toggleBackGate = function () {
+    var body    = document.getElementById('back-gate-body');
+    var chevron = document.getElementById('back-gate-chevron');
+    var trigger = document.getElementById('back-gate-trigger');
+    var open    = !body.classList.contains('hidden');
+    if (open) {
+      body.classList.add('hidden');
+      chevron.innerHTML = '<path d="m6 9 6 6 6-6"/>';
+      trigger.setAttribute('aria-expanded', 'false');
+    } else {
+      body.classList.remove('hidden');
+      chevron.innerHTML = '<path d="m18 15-6-6-6 6"/>';
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+  };
+
+  /* ── Show all house rules ───────────────────────────────── */
+  window.showAllRules = function () {
+    document.getElementById('rules-extra').classList.remove('hidden');
+    document.getElementById('show-all-btn').classList.add('hidden');
+  };
+
+  /* ── Contact form ───────────────────────────────────────── */
+  function sanitize(s) {
+    return s.trim().replace(/[<>]/g, '');
+  }
+
+  window.handleContactSubmit = function (e) {
+    e.preventDefault();
+    var name    = document.getElementById('contact-name').value;
+    var email   = document.getElementById('contact-email').value;
+    var dates   = document.getElementById('contact-dates').value;
+    var message = document.getElementById('contact-message').value;
+
+    var valid = true;
+
+    function setErr(id, msg) {
+      var el = document.getElementById(id);
+      if (msg) { el.textContent = msg; el.classList.remove('hidden'); valid = false; }
+      else     { el.classList.add('hidden'); }
+    }
+
+    setErr('err-name',
+      !name.trim()           ? 'Name is required (max 100 chars)' :
+      name.trim().length > 100 ? 'Name is required (max 100 chars)' : '');
+
+    var emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setErr('err-email',
+      !email.trim()                        ? 'Valid email required (max 255 chars)' :
+      !emailRx.test(email.trim())          ? 'Valid email required (max 255 chars)' :
+      email.trim().length > 255            ? 'Valid email required (max 255 chars)' : '');
+
+    setErr('err-dates',
+      dates.trim().length > 100 ? 'Dates too long (max 100 chars)' : '');
+
+    setErr('err-message',
+      !message.trim()              ? 'Message is required (max 1000 chars)' :
+      message.trim().length > 1000 ? 'Message is required (max 1000 chars)' : '');
+
+    if (!valid) return;
+
+    var subject = encodeURIComponent('Direct Booking Inquiry from ' + sanitize(name));
+    var body    = encodeURIComponent(
+      'Name: '             + sanitize(name)    + '\n' +
+      'Email: '            + sanitize(email)   + '\n' +
+      'Preferred Dates: '  + sanitize(dates)   + '\n\n' +
+      sanitize(message)
+    );
+    window.location.href = 'mailto:sschurlish@gmail.com?subject=' + subject + '&body=' + body;
+
+    document.getElementById('contact-form-wrap').classList.add('hidden');
+    document.getElementById('contact-success').classList.remove('hidden');
+  };
+
+  window.resetContactForm = function () {
+    document.getElementById('contact-form').reset();
+    document.getElementById('contact-success').classList.add('hidden');
+    document.getElementById('contact-form-wrap').classList.remove('hidden');
+  };
+
+})();
+</script>
+
+</body>
+</html>
