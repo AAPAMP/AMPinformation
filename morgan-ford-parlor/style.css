@@ -203,6 +203,10 @@ p { margin: 0; }
 @media (min-width: 768px) {
   .hero-text { padding: 3.5rem 1.25rem; }
 }
+/* Brenner Pass uses py-16 (4rem) on desktop */
+@media (min-width: 768px) {
+  .hero-text.hero-text-bp { padding-top: 4rem; padding-bottom: 4rem; }
+}
 
 .hero-divider {
   display: flex;
