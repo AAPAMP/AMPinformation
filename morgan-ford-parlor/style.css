@@ -1045,10 +1045,572 @@ ol.steps li:last-child { margin-bottom: 0; }
 .mt-3 { margin-top: 0.75rem; }
 .mt-4 { margin-top: 1rem; }
 .mt-5 { margin-top: 1.25rem; }
+.mt-6 { margin-top: 1.5rem; }
 .mt-8 { margin-top: 2rem; }
 .mb-2 { margin-bottom: 0.5rem; }
 .mb-3 { margin-bottom: 0.75rem; }
 .mb-4 { margin-bottom: 1rem; }
 .mb-5 { margin-bottom: 1.25rem; }
+.mb-6 { margin-bottom: 1.5rem; }
 .space-y-4 > * + * { margin-top: 1rem; }
 .space-y-3 > * + * { margin-top: 0.75rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+.text-center { text-align: center; }
+
+/* ══════════════════════════════════════════════════════════════
+   EXTENDED STYLES — pages beyond The Stanley
+══════════════════════════════════════════════════════════════ */
+
+/* ── Primary (green) colour variants ───────────────────────── */
+.section-icon.primary {
+  background: var(--primary);
+  color: var(--primary-fg);
+}
+.section-icon.primary svg { stroke: var(--primary-fg); }
+
+.icon-card-icon.primary { color: var(--primary); }
+.icon-card-icon.primary svg { stroke: var(--primary); }
+
+/* Quick link that highlights in green on hover */
+.quick-link.primary-hover:hover {
+  background: var(--primary);
+  color: var(--primary-fg);
+}
+
+/* ── 3-column grid (Brenner Pass codes) ─────────────────────── */
+.grid-3 { display: grid; gap: 1rem; }
+@media (min-width: 768px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ── Brenner Pass warning box ───────────────────────────────── */
+.warning-box {
+  padding: 1rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: hsl(0 84.2% 60.2% / 0.1);
+  border: 1px solid hsl(0 84.2% 60.2% / 0.2);
+}
+
+/* ── Good-to-know / secondary note box ─────────────────────── */
+.note-box {
+  padding: 1rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--secondary);
+  border: 1px solid var(--border);
+}
+
+/* ── External link ──────────────────────────────────────────── */
+.external-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.external-link svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Facility card (Brenner Pass activities) ────────────────── */
+.facility-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+}
+.facility-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0 0 0.25rem 0;
+}
+.facility-desc { font-size: 0.875rem; color: var(--muted-fg); margin: 0; }
+
+/* ── Photo with caption ─────────────────────────────────────── */
+.photo-captioned { border-radius: calc(var(--radius) - 2px); overflow: hidden; }
+.photo-captioned img { width: 100%; object-fit: cover; display: block; }
+.photo-caption {
+  font-size: 0.75rem;
+  color: var(--muted-fg);
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+/* ── Brenner Pass 2-col photo grid ──────────────────────────── */
+.photo-grid-caption {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  border-radius: calc(var(--radius) - 2px);
+  overflow: hidden;
+}
+.photo-grid-caption img {
+  width: 100%;
+  height: 8rem;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+}
+@media (min-width: 768px) {
+  .photo-grid-caption img { height: 11rem; }
+}
+
+/* ── Bullet list ────────────────────────────────────────────── */
+ul.bullet-list {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin: 0;
+}
+ul.bullet-list li {
+  font-size: 0.875rem;
+  color: var(--fg);
+  margin-bottom: 0.25rem;
+}
+ul.bullet-list li:last-child { margin-bottom: 0; }
+
+/* ── TGS Hero (overlapping header) ─────────────────────────── */
+.tgs-hero-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+@media (min-width: 768px) { .tgs-hero-wrap { aspect-ratio: 21 / 9; } }
+.tgs-hero-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tgs-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--bg) 0%, hsl(40 33% 96% / 0.4) 40%, transparent 100%);
+}
+.tgs-header {
+  position: relative;
+  max-width: 48rem;
+  margin: -4rem auto 0;
+  padding: 0 1.25rem;
+}
+@media (min-width: 768px) { .tgs-header { margin-top: -6rem; } }
+.tgs-page-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-fg);
+  flex-shrink: 0;
+}
+.tgs-page-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tgs-h1-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.tgs-h1 {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+  margin: 0;
+}
+@media (min-width: 768px) { .tgs-h1 { font-size: 2.25rem; } }
+
+/* ── TGS Quick links (hover green) ─────────────────────────── */
+.tgs-nav-link {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--secondary);
+  color: var(--secondary-fg);
+  text-align: center;
+  transition: background 0.15s, color 0.15s;
+  display: block;
+}
+.tgs-nav-link:hover { background: var(--primary); color: var(--primary-fg); }
+
+/* ── Your Neighborhood (TGS) ────────────────────────────────── */
+.tgs-neighborhood-section { max-width: 48rem; margin: 0 auto; padding: 2rem 1.25rem 0; }
+.tgs-qp-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.tgs-qp-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--brick);
+  color: var(--brick-fg);
+  flex-shrink: 0;
+}
+.tgs-qp-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tgs-qp-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0;
+}
+@media (min-width: 768px) { .tgs-qp-title { font-size: 1.5rem; } }
+
+/* Quick pick card */
+.quick-pick {
+  padding: 0.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: hsl(35 30% 88% / 0.5);
+}
+.quick-pick-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--fg);
+  font-size: 0.875rem;
+  margin: 0 0 0.25rem 0;
+}
+.quick-pick-desc { font-size: 0.75rem; color: var(--muted-fg); margin: 0; }
+
+/* Songbird highlight card */
+.songbird-pick {
+  padding: 0.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: hsl(35 30% 88% / 0.5);
+  border-left: 4px solid var(--primary);
+}
+.songbird-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; }
+.songbird-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--fg);
+  font-size: 0.875rem;
+  margin: 0;
+}
+.songbird-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.625rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  background: var(--primary);
+  color: var(--primary-fg);
+  font-weight: 600;
+  font-family: var(--font-body);
+  white-space: nowrap;
+}
+.songbird-badge svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Accordion (TGS categories) ─────────────────────────────── */
+.accordion-list { max-width: 48rem; margin: 0 auto; padding: 1rem 1.25rem 2.5rem; }
+.accordion-list > * + * { margin-top: 0.75rem; }
+.accordion-item {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  scroll-margin-top: 5rem;
+}
+.accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+@media (min-width: 768px) { .accordion-trigger { padding: 0.75rem 1.5rem; } }
+.accordion-trigger:hover { background: hsl(35 20% 92% / 0.5); }
+.accordion-trigger-left { display: flex; align-items: center; gap: 0.75rem; }
+.accordion-cat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-fg);
+  flex-shrink: 0;
+}
+.accordion-cat-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.accordion-cat-title {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+@media (min-width: 768px) { .accordion-cat-title { font-size: 1.25rem; } }
+.accordion-cat-count { font-size: 0.75rem; color: var(--muted-fg); margin-left: 0.25rem; }
+.accordion-chevron {
+  width: 1rem;
+  height: 1rem;
+  stroke: var(--muted-fg);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.accordion-chevron.open { transform: rotate(180deg); }
+.accordion-content {
+  padding: 0 1.25rem 0.75rem;
+  display: none;
+}
+.accordion-content.open { display: block; }
+@media (min-width: 768px) { .accordion-content { padding: 0 1.5rem 0.75rem; } }
+
+/* Spot card inside accordion */
+.spots-grid { display: grid; gap: 0.75rem; }
+@media (min-width: 768px) { .spots-grid { grid-template-columns: repeat(2, 1fr); } }
+.spot-card {
+  border-radius: calc(var(--radius) - 2px);
+  background: hsl(35 30% 88% / 0.5);
+  overflow: hidden;
+}
+.spot-card img { width: 100%; height: 8rem; object-fit: cover; display: block; }
+@media (min-width: 768px) { .spot-card img { height: 9rem; } }
+.spot-body { padding: 0.75rem; }
+.spot-link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.spot-name { font-family: var(--font-display); font-weight: 600; font-size: 0.875rem; color: var(--fg); }
+.spot-desc { font-size: 0.75rem; color: var(--muted-fg); margin-top: 0.25rem; }
+
+/* Neighborhood explore card */
+.nbhd-explore-card {
+  padding: 0.75rem;
+  border-radius: calc(var(--radius) - 2px);
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.nbhd-explore-title { font-family: var(--font-display); font-weight: 600; color: var(--fg); font-size: 0.875rem; margin: 0 0 0.125rem 0; }
+.nbhd-explore-vibe { font-size: 0.75rem; font-weight: 500; color: var(--primary); margin: 0 0 0.25rem 0; }
+.nbhd-explore-desc { font-size: 0.75rem; color: var(--muted-fg); margin: 0 0 0.375rem 0; }
+.nbhd-explore-miss { font-size: 0.75rem; color: var(--muted-fg); margin: 0; }
+
+/* ── Guides / Property Index ─────────────────────────────────── */
+.guides-header {
+  text-align: center;
+  padding: 4rem 1.25rem 2.5rem;
+}
+@media (min-width: 768px) { .guides-header { padding: 6rem 1.25rem 3.5rem; } }
+.guides-h1 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+  margin: 0 0 0.75rem 0;
+}
+@media (min-width: 768px) { .guides-h1 { font-size: 3.75rem; } }
+.guides-sub { font-size: 1.125rem; color: var(--muted-fg); max-width: 28rem; margin: 0 auto; }
+
+.property-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 5rem;
+}
+@media (min-width: 768px) { .property-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.property-card {
+  display: block;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+.property-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.property-card-img { aspect-ratio: 16 / 10; overflow: hidden; }
+.property-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.property-card:hover .property-card-img img { transform: scale(1.05); }
+.property-card-body { padding: 1.25rem 1.5rem; }
+.property-card-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--fg); margin: 0 0 0.25rem 0; }
+.property-card-tagline { font-size: 0.875rem; color: var(--muted-fg); margin: 0; }
+
+/* Our Neighborhoods section on guides page */
+.neighborhoods-section {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+}
+.neighborhoods-heading {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+  text-align: center;
+  margin: 0 0 0.5rem 0;
+}
+@media (min-width: 768px) { .neighborhoods-heading { font-size: 1.875rem; } }
+.neighborhoods-sub { font-size: 0.875rem; color: var(--muted-fg); text-align: center; max-width: 36rem; margin: 0 auto 1.5rem; }
+@media (min-width: 768px) { .neighborhoods-sub { font-size: 1rem; } }
+
+.tgs-card {
+  display: block;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  overflow: hidden;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+.tgs-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.tgs-card-inner { display: grid; }
+@media (min-width: 768px) { .tgs-card-inner { grid-template-columns: repeat(2, 1fr); } }
+.tgs-card-img { aspect-ratio: 16 / 10; overflow: hidden; }
+@media (min-width: 768px) { .tgs-card-img { aspect-ratio: auto; } }
+.tgs-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.tgs-card:hover .tgs-card-img img { transform: scale(1.05); }
+.tgs-card-body {
+  padding: 1.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tgs-card-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.tgs-card-label svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: var(--primary);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.tgs-card-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin: 0 0 0.5rem 0;
+}
+@media (min-width: 768px) { .tgs-card-title { font-size: 1.5rem; } }
+.tgs-card-desc { font-size: 0.875rem; color: var(--muted-fg); margin: 0 0 1rem 0; }
+.tgs-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.tgs-card-cta svg {
+  width: 1rem;
+  height: 1rem;
+  stroke: var(--primary);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.15s;
+}
+.tgs-card:hover .tgs-card-cta svg { transform: translateX(2px); }
+
+/* ── 404 / Landing page ─────────────────────────────────────── */
+.not-found-wrap {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: var(--muted);
+  padding: 1.25rem;
+}
+.not-found-box { text-align: center; max-width: 28rem; }
+.not-found-h1 {
+  font-family: var(--font-display);
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--fg);
+  margin: 0 0 0.75rem 0;
+}
+.not-found-p { font-size: 1rem; color: var(--muted-fg); margin: 0; }
+
+/* ── Guides footer ───────────────────────────────────────────── */
+.guides-footer {
+  text-align: center;
+  padding-bottom: 2.5rem;
+  font-size: 0.875rem;
+  color: var(--muted-fg);
+}

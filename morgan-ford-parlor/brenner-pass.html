@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brenner Pass — Guest Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Hero ─────────────────────────────────────────────────── -->
+  <header>
+    <div class="hero-img-wrap">
+      <img class="hero-img" src="assets/brenner-pass-actual.jpg" alt="Brenner Pass cabin" />
+    </div>
+    <div class="hero-text">
+      <h1 class="hero-title">Brenner Pass</h1>
+      <p class="hero-subtitle">A cabin in the woods at Innsbrook</p>
+      <p class="hero-desc">Welcome to our home away from home. Take a deep breath, relax, and let the forest work its magic.</p>
+    </div>
+  </header>
+
+  <!-- ── Quick Links ───────────────────────────────────────────── -->
+  <nav class="section-container pt-0">
+    <div class="info-card">
+      <h2 class="card-h2">Quick Links</h2>
+      <div class="quick-links-grid" style="grid-template-columns: repeat(2,1fr);">
+        <a href="#directions" class="quick-link primary-hover">Getting Here</a>
+        <a href="#checkin" class="quick-link primary-hover">Check-In</a>
+        <a href="#water" class="quick-link primary-hover">Water System</a>
+        <a href="#activities" class="quick-link primary-hover">Things to Do</a>
+        <a href="#cabin" class="quick-link primary-hover">The Cabin</a>
+        <a href="#golfcart" class="quick-link primary-hover">Golf Cart</a>
+        <a href="#checkout" class="quick-link primary-hover">Checkout</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Getting Here ─────────────────────────────────────────── -->
+  <section id="directions" class="section-container">
+    <div class="section-header">
+      <div class="section-icon primary">
+        <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h2 class="section-title">Getting Here</h2>
+    </div>
+
+    <ol class="steps">
+      <li>Take <strong>Highway 40</strong> across the Missouri River to <strong>Highway 70</strong></li>
+      <li>Merge left onto Highway 70 and continue to the first <strong>Wright City exit</strong></li>
+      <li>Turn <strong>left</strong>, cross the train tracks, follow signs for <strong>Hwy F / Innsbrook</strong></li>
+      <li>Turn <strong>right</strong>, then <strong>left</strong> at the end of the block</li>
+      <li>Follow Hwy F for about <strong>five miles</strong></li>
+      <li>The main <strong>Innsbrook entrance</strong> will be on your left — give the guard your name for a dashboard pass</li>
+      <li>Follow the GPS directions from your booking confirmation — look for the only black cabin</li>
+    </ol>
+
+    <div class="mt-6">
+      <div class="photo-captioned">
+        <img src="assets/brenner-lake.jpg" alt="Fall foliage at Innsbrook lake" style="height:10rem;object-fit:cover;" />
+      </div>
+      <p class="photo-caption">The drive into Innsbrook — lakes and fall color everywhere</p>
+    </div>
+  </section>
+
+  <!-- ── Check-In ──────────────────────────────────────────────── -->
+  <section id="checkin" class="section-container">
+    <div class="section-header">
+      <div class="section-icon primary">
+        <svg viewBox="0 0 24 24"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
+      </div>
+      <h2 class="section-title">Check-In</h2>
+    </div>
+
+    <!-- Password gate -->
+    <div id="pg-checkin">
+      <div class="password-gate">
+        <div class="pg-icon-wrap">
+          <div class="pg-icon-circle">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+        </div>
+        <p class="pg-title">Access Restricted</p>
+        <p class="pg-desc">Enter the password your host shared to view check-in details.</p>
+        <div class="pg-form">
+          <input id="pg-input" class="pg-input" type="password" maxlength="50" placeholder="Password" autocomplete="off" />
+          <p class="pg-error hidden" id="pg-error">Incorrect password. Try again.</p>
+          <button class="pg-btn" onclick="pgUnlock()">Unlock</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="checkin-content" class="hidden">
+      <div class="grid-3">
+        <div class="code-card">
+          <p class="code-card-label">Lockbox Code</p>
+          <p class="code-box">26789</p>
+        </div>
+        <div class="code-card">
+          <p class="code-card-label">Shed Code</p>
+          <p class="code-box">2678</p>
+        </div>
+        <div class="code-card">
+          <p class="code-card-label">WiFi: GhostCabin</p>
+          <p class="code-box">41BrennerPass</p>
+        </div>
+      </div>
+      <p class="mt-4" style="color:var(--muted-fg);font-size:0.875rem;">The lockbox is on the front door. Please return the key whenever you leave the cabin.</p>
+    </div>
+  </section>
+
+  <!-- ── Water System ──────────────────────────────────────────── -->
+  <section id="water" class="section-container">
+    <div class="section-header">
+      <div class="section-icon primary">
+        <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      </div>
+      <h2 class="section-title">Water System</h2>
+    </div>
+
+    <p class="mb-4">The water is often turned off between stays. First, turn on any faucet to check — if water flows, you're all set!</p>
+
+    <div class="info-card mb-4">
+      <h3 class="card-h3" style="margin-bottom:0.75rem;">If the water is off:</h3>
+      <ol class="steps">
+        <li><strong>Close the two drain valves</strong> in the closet by the front door (near floor, back wall). Turn them so they are perpendicular to the pipes.</li>
+        <li><strong>Close the yellow valve</strong> outside near the bedroom window on the front of the cabin.</li>
+        <li><strong>Turn the L-shaped metal rod</strong> coming out of the ground so it points away from the cabin. This turns the water on.</li>
+      </ol>
+    </div>
+
+    <div class="note-box">
+      <p style="font-size:0.875rem;color:var(--secondary-fg);"><strong>Good to Know:</strong> The cabin uses well water. It's safe for showers and brushing teeth. Bottled water is provided for drinking if preferred.</p>
+    </div>
+  </section>
+
+  <!-- ── Things to Do ──────────────────────────────────────────── -->
+  <section id="activities" class="section-container">
+    <div class="section-header">
+      <div class="section-icon primary">
+        <svg viewBox="0 0 24 24"><path d="M17 8C8 10 5.9 16.17 3.82 20.48L5.9 22l1-2.3A4.49 4.49 0 0 0 8 20c9 0 12-9.5 10.5-14"/><path d="M6.63 14.17c.38-1.73 1.59-3.9 4.37-5.17"/></svg>
+      </div>
+      <h2 class="section-title">Things to Do</h2>
+    </div>
+
+    <p class="mb-4">Innsbrook is a private resort community with over 100 lakes, 7,000 acres of nature, and a full lineup of activities.</p>
+
+    <h3 class="card-h3 mt-4 mb-3" style="font-size:1.125rem;">At the Cabin</h3>
+    <div class="grid-2 mb-5">
+      <div class="icon-card">
+        <div class="icon-card-icon primary">
+          <svg viewBox="0 0 24 24"><path d="M2 12 C2 12 7 4 12 4 17 4 22 12 22 12 22 12 17 20 12 20 7 20 2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </div>
+        <div>
+          <p class="icon-card-title">Kayaks</p>
+          <p class="icon-card-desc">Two kayaks (blue &amp; white, marked 'Lot 41'). Paddles in shed rafters.</p>
+        </div>
+      </div>
+      <div class="icon-card">
+        <div class="icon-card-icon primary">
+          <svg viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div>
+          <p class="icon-card-title">Zip Line</p>
+          <p class="icon-card-desc">It's FAST! Use with care and adult supervision.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="photo-grid-caption mb-5">
+      <div>
+        <img src="assets/brenner-fireplace.jpg" alt="Cozy stone fireplace" />
+        <p class="photo-caption">The fireplace</p>
+      </div>
+      <div>
+        <img src="assets/brenner-firepit.jpg" alt="Outdoor fire pit in the woods" />
+        <p class="photo-caption">Evening s'mores spot</p>
+      </div>
+    </div>
+
+    <h3 class="card-h3 mt-4 mb-3" style="font-size:1.125rem;">Around Innsbrook</h3>
+    <div class="grid-2 mb-4">
+      <div class="facility-card">
+        <p class="facility-title">🏊 Pool &amp; Beaches</p>
+        <p class="facility-desc">Community pool and private lake beaches. Pool open until 9 PM weekends. Give lot number 41 and your name. Sugarfire and a bar at the pool.</p>
+      </div>
+      <div class="facility-card">
+        <p class="facility-title">🏓 Pickleball</p>
+        <p class="facility-desc">Many courts at Innsbrook. Our set is in the shed.</p>
+      </div>
+      <div class="facility-card">
+        <p class="facility-title">⛳ 18-Hole Golf Course</p>
+        <p class="facility-desc">Public course with dramatic elevation changes and scenic views. Book tee times online.</p>
+      </div>
+      <div class="facility-card">
+        <p class="facility-title">🐴 Stables</p>
+        <p class="facility-desc">Indoor and outdoor arenas, trail obstacles, and direct trail access through 30 acres of pastures.</p>
+      </div>
+      <div class="facility-card">
+        <p class="facility-title">🥾 Nature Trails</p>
+        <p class="facility-desc">Seven trails from the tranquil Aspen Spur to the diverse Meadows Trail — something for every level.</p>
+      </div>
+      <div class="facility-card">
+        <p class="facility-title">🍽️ Dining &amp; Market</p>
+        <p class="facility-desc">The Clubhouse restaurant, a coffee shop with pastries and ice cream, and The Market near the entrance for groceries and essentials.</p>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <a href="https://www.innsbrook-resort.com/amenities" target="_blank" rel="noopener noreferrer" class="external-link">
+        Explore all Innsbrook amenities
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      </a>
+    </div>
+
+    <h3 class="card-h3 mt-8 mb-3" style="font-size:1.125rem;">Around the Cabin</h3>
+    <ul class="bullet-list">
+      <li>Firewood stored under the deck (bring some if you can!)</li>
+      <li>Outdoor swing — please use with care</li>
+      <li>Beach towels, noodles, floaties, and sand shovel available</li>
+      <li>Canopy and beach chairs in the shed</li>
+      <li>BBQ lighters in center drawer by pass-through window</li>
+      <li>Charcoal next to the grill</li>
+      <li>Sunscreen &amp; bug spray under bathroom sink</li>
+      <li>Phone chargers in nightstands</li>
+    </ul>
+  </section>
+
+  <!-- ── The Cabin ─────────────────────────────────────────────── -->
+  <section id="cabin" class="section-container">
+    <div class="section-header">
+      <div class="section-icon primary">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+      </div>
+      <h2 class="section-title">The Cabin</h2>
+    </div>
+
+    <div class="photo-captioned mb-5">
+      <img src="assets/brenner-bedroom.jpg" alt="Comfortable bedroom with wood ceiling" style="width:100%;height:10rem;object-fit:cover;" />
+      <p class="photo-caption">Cozy bedroom with wood-paneled ceiling</p>
+    </div>
+
+    <div class="space-y-4">
+      <div class="info-card">
+        <h3 class="card-h3">Projector</h3>
+        <p style="font-size:0.875rem;color:var(--fg);">Connected to WiFi and works with smartphones for streaming. Pull the screen down gently — stop when approximately 3 inches of black border shows at the top. Remote is in the bar cabinet.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="card-h3">Thermostat</h3>
+        <p style="font-size:0.875rem;color:var(--fg);">Nest thermostat is on the wall by the main-floor bedroom. Tap the side to wake it; slide your finger up/down the left edge to navigate menus.</p>
+      </div>
+      <div class="info-card">
+        <h3 class="card-h3">Sonos</h3>
+        <p style="font-size:0.875rem;color:var(--fg);">Available via the Sonos app on your phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Golf Cart ─────────────────────────────────────────────── -->
+  <section id="golfcart" class="section-container">
+    <div class="section-header">
+      <div class="section-icon primary">
+        <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-3"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+      </div>
+      <h2 class="section-title">Golf Cart</h2>
+    </div>
+
+    <p class="mb-4">The golf cart is old but usable if handled properly. Use only for short trips to the beach and back.</p>
+
+    <div class="warning-box mb-4">
+      <p style="font-size:0.875rem;font-weight:600;color:var(--fg);">⚠️ Only licensed, insured drivers may operate the cart.</p>
+    </div>
+
+    <ul class="bullet-list">
+      <li>Switch under seat: <strong>RUN</strong> while driving, <strong>TOW</strong> when not in use</li>
+      <li>If it wasn't charging when you arrived, charge before driving</li>
+      <li>Charge every night</li>
+      <li>Keys on the key rack inside front door (clear "LA" key ring) or in cart</li>
+      <li>Wagon in shed can be pulled manually or towed behind cart</li>
+    </ul>
+  </section>
+
+  <!-- ── Checkout ──────────────────────────────────────────────── -->
+  <section id="checkout" class="section-container">
+    <div class="section-header">
+      <div class="section-icon primary">
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <h2 class="section-title">Checkout Checklist</h2>
+    </div>
+
+    <div class="space-y-6">
+
+      <div class="info-card">
+        <h3 class="checklist-title">Water System</h3>
+        <ul class="checklist-items">
+          <li class="checklist-item"><span class="checklist-box"></span>Turn off the main water valve outside (L-shaped pipe to the left of front door)</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Open the yellow lever next to that valve to drain water from the house</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Open the two indoor drain valves in the closet near the front door</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3 class="checklist-title">Laundry</h3>
+        <ul class="checklist-items">
+          <li class="checklist-item"><span class="checklist-box"></span>Strip the sheets from any beds used</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Gather all used towels, dish towels, and sheets</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Deliver to our house in the CWE — leave on front porch, no need to knock!</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3 class="checklist-title">Doors &amp; Fireplace</h3>
+        <ul class="checklist-items">
+          <li class="checklist-item"><span class="checklist-box"></span>Lock all doors</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Kitchen sliding door must be closed firmly before it will lock</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Living room slider needs to be pulled slightly back from fully closed to engage lock</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Ensure the fire is completely out and close the fire curtain</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Restock firewood</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3 class="checklist-title">Final Items</h3>
+        <ul class="checklist-items">
+          <li class="checklist-item"><span class="checklist-box"></span>Projector screen rolled back up</li>
+          <li class="checklist-item"><span class="checklist-box"></span>All lights off</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Curtains open</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Outdoor cushions brought inside (don't block vent under stairs)</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Grill cover replaced</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Firepit fully extinguished</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Golf cart plugged in and set to TOW mode</li>
+          <li class="checklist-item"><span class="checklist-box"></span>Key back in lockbox</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <p class="footer-disclaimer">
+      These guest instructions are provided to help ensure a safe and comfortable stay. By entering and using the property, you acknowledge that you are doing so voluntarily and at your own risk. The homeowner is not responsible for any injuries, accidents, loss, or damage to personal belongings that may occur on or around the premises. All guests agree to follow the safety guidance, house rules, and any posted instructions throughout the property. Parents and guardians are fully responsible for supervising children at all times.
+    </p>
+  </footer>
+
+  <script>
+    /* ── Back-navigation block ─── */
+    window.history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', function() {
+      window.history.pushState(null, '', window.location.href);
+    });
+
+    /* ── Password gate ─── */
+    (function () {
+      var KEY = 'guest-access-unlocked';
+      var PASS = 'welcome';
+      function showContent() {
+        document.getElementById('pg-checkin').classList.add('hidden');
+        document.getElementById('checkin-content').classList.remove('hidden');
+      }
+      if (sessionStorage.getItem(KEY) === '1') showContent();
+
+      window.pgUnlock = function () {
+        var val = document.getElementById('pg-input').value.trim().toLowerCase().slice(0, 50);
+        if (val === PASS) {
+          sessionStorage.setItem(KEY, '1');
+          showContent();
+        } else {
+          document.getElementById('pg-error').classList.remove('hidden');
+        }
+      };
+
+      document.getElementById('pg-input').addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') window.pgUnlock();
+      });
+    })();
+  </script>
+
+</body>
+</html>

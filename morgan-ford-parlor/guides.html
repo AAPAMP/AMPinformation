@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Places — Guest Guides</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="guides-header">
+    <h1 class="guides-h1">Our Places</h1>
+    <p class="guides-sub">Handpicked homes for your next getaway. Pick a property to view your guest guide.</p>
+  </header>
+
+  <!-- ── Property Cards ─────────────────────────────────────── -->
+  <main class="property-grid">
+
+    <a href="brenner-pass.html" class="property-card">
+      <div class="property-card-img">
+        <img src="assets/brenner-pass-actual.jpg" alt="Brenner Pass" loading="lazy" />
+      </div>
+      <div class="property-card-body">
+        <h2 class="property-card-title">Brenner Pass</h2>
+        <p class="property-card-tagline">A cabin in the woods at Innsbrook</p>
+      </div>
+    </a>
+
+    <a href="index.html" class="property-card">
+      <div class="property-card-img">
+        <img src="assets/stanley-exterior.jpg" alt="The Stanley" loading="lazy" />
+      </div>
+      <div class="property-card-body">
+        <h2 class="property-card-title">The Stanley</h2>
+        <p class="property-card-tagline">Tower Grove historic sophistication</p>
+      </div>
+    </a>
+
+    <a href="morganford-floor-2.html" class="property-card">
+      <div class="property-card-img">
+        <img src="assets/morganford-exterior.jpg" alt="Morganford — Floor 2" loading="lazy" />
+      </div>
+      <div class="property-card-body">
+        <h2 class="property-card-title">Morganford — Floor 2</h2>
+        <p class="property-card-tagline">Tower Grove South · St. Louis</p>
+      </div>
+    </a>
+
+  </main>
+
+  <!-- ── Our Neighborhoods ──────────────────────────────────── -->
+  <section class="neighborhoods-section">
+    <h2 class="neighborhoods-heading">Our Neighborhoods</h2>
+    <p class="neighborhoods-sub">Local guides to help you eat, drink, and explore like a regular.</p>
+
+    <a href="tower-grove-south.html" class="tgs-card">
+      <div class="tgs-card-inner">
+        <div class="tgs-card-img">
+          <img src="assets/tgs-park.jpg" alt="Tower Grove Park sailboat pond and castle ruins" loading="lazy" />
+        </div>
+        <div class="tgs-card-body">
+          <div class="tgs-card-label">
+            <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            St. Louis
+          </div>
+          <h3 class="tgs-card-title">Tower Grove South</h3>
+          <p class="tgs-card-desc">One of St.&nbsp;Louis's most walkable, restaurant-rich neighborhoods. Curated picks for restaurants, coffee, breweries, parks, and more.</p>
+          <span class="tgs-card-cta">
+            Explore the guide
+            <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </div>
+      </div>
+    </a>
+  </section>
+
+  <footer class="guides-footer">
+    &copy; <span id="yr"></span> &middot; Our Places
+  </footer>
+
+  <script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
