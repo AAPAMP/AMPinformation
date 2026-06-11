@@ -750,7 +750,7 @@
     return s.trim().replace(/[<>]/g, '');
   }
 
-  window.handleContactSubmit = function (e) {
+window.handleContactSubmit = function (e) {
     e.preventDefault();
     var name    = document.getElementById('contact-name').value;
     var email   = document.getElementById('contact-email').value;
@@ -766,35 +766,49 @@
     }
 
     setErr('err-name',
-      !name.trim()           ? 'Name is required (max 100 chars)' :
+      !name.trim()             ? 'Name is required (max 100 chars)' :
       name.trim().length > 100 ? 'Name is required (max 100 chars)' : '');
 
     var emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setErr('err-email',
-      !email.trim()                        ? 'Valid email required (max 255 chars)' :
-      !emailRx.test(email.trim())          ? 'Valid email required (max 255 chars)' :
-      email.trim().length > 255            ? 'Valid email required (max 255 chars)' : '');
+      !email.trim()               ? 'Valid email required (max 255 chars)' :
+      !emailRx.test(email.trim()) ? 'Valid email required (max 255 chars)' :
+      email.trim().length > 255   ? 'Valid email required (max 255 chars)' : '');
 
     setErr('err-dates',
       dates.trim().length > 100 ? 'Dates too long (max 100 chars)' : '');
 
     setErr('err-message',
-      !message.trim()              ? 'Message is required (max 1000 chars)' :
-      message.trim().length > 1000 ? 'Message is required (max 1000 chars)' : '');
+      !message.trim()               ? 'Message is required (max 1000 chars)' :
+      message.trim().length > 1000  ? 'Message is required (max 1000 chars)' : '');
 
     if (!valid) return;
 
-    var subject = encodeURIComponent('Direct Booking Inquiry from ' + sanitize(name));
-    var body    = encodeURIComponent(
-      'Name: '             + sanitize(name)    + '\n' +
-      'Email: '            + sanitize(email)   + '\n' +
-      'Preferred Dates: '  + sanitize(dates)   + '\n\n' +
-      sanitize(message)
-    );
-    window.location.href = 'mailto:sschurlish@gmail.com?subject=' + subject + '&body=' + body;
+    var formData = new FormData();
+    formData.append('access_key', 'a83f171c-d596-4a28-b034-bea52a8676a5');
+    formData.append('subject', 'Booking Inquiry — The Stanley');
+    formData.append('from_name', sanitize(name));
+    formData.append('email', sanitize(email));
+    formData.append('name', sanitize(name));
+    formData.append('dates', sanitize(dates));
+    formData.append('message', sanitize(message));
 
-    document.getElementById('contact-form-wrap').classList.add('hidden');
-    document.getElementById('contact-success').classList.remove('hidden');
+    fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: formData
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data.success) {
+        document.getElementById('contact-form-wrap').classList.add('hidden');
+        document.getElementById('contact-success').classList.remove('hidden');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    })
+    .catch(function () {
+      alert('Network error. Please try again.');
+    });
   };
 
   window.resetContactForm = function () {
